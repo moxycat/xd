@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
 
 char make_printable(char c) {
@@ -90,9 +89,7 @@ int main(int argc, char **argv) {
         printf(" -c  print in a c-style array format.\n");
         return 0;
     }
-
     int c_mode = 0;
-
     for (int i = 1; i < argc; i++) {
         if (!strcmp(argv[i], "-c")) {
             c_mode = 1;
