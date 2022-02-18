@@ -56,6 +56,8 @@ void dump_as_array(char *filename) {
     FILE *f;
     unsigned char buf[16];
     unsigned int read = 0;
+	int eof = 0;
+
 
     f = fopen(filename, "rb");
     printf("%s:\n", filename);
@@ -70,11 +72,14 @@ void dump_as_array(char *filename) {
     while (!feof(f)) {
         read = fread(buf, sizeof(unsigned char), 16, f);
         if (!read) break;
+        
+        if (feof(f)) eof = 1;
 
         printf("        ");
         for (unsigned int i = 0; i < read; ++i) {
-            if (i > 0) printf(", ");
             printf("%#02x", buf[i]);
+        	if ((eof == 1) && (i == read - 1)) {}
+			else printf(", ");
         }
         printf("\n");
     }
